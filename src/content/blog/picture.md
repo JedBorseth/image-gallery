@@ -4,6 +4,9 @@ pubDatetime: 2022-09-25T15:20:35Z
 title: IMG001
 featured: false
 draft: false
+tags:
+  - test
+  - another test
 description: a description of the picture
 ---
 
