@@ -1,0 +1,25 @@
+---
+import { SITE } from "@config";
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import { ImageUploader } from "@components/ImageUploader";
+
+export const prerender = false;
+---
+
+<Layout title={`Upload | ${SITE.title}`}>
+  <Header />
+
+  <main id="main-content">
+    <ImageUploader client:load />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  #main-content {
+    @apply mx-auto flex max-w-3xl flex-1 items-center justify-center;
+  }
+</style>
