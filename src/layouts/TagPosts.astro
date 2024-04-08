@@ -19,18 +19,18 @@ export interface Props {
 const { currentPage, totalPages, paginatedPosts, tag, tagName } = Astro.props;
 ---
 
-<Layout title={`Film Pics: ${tagName} | ${SITE.title}`}>
-  <Header activeNav="film" />
+<Layout title={`Tags: ${tagName} | ${SITE.title}`}>
+  <Header activeNav="tag" />
   <Main
     pageTitle={[`Tag:`, `${tagName}`]}
     titleTransition={tag}
-    pageDesc={`All the articles with the tag "${tagName}".`}
+    pageDesc={`All the pictures with the tag "${tagName}".`}
   >
     <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
     <ul>
       {
         paginatedPosts.map(({ data, slug }) => (
-          <Card href={`/posts/${slug}/`} frontmatter={data} />
+          <Card href={`/pictures/${slug}/`} frontmatter={data} />
         ))
       }
     </ul>

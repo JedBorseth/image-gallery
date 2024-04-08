@@ -9,7 +9,7 @@ export interface Props {
 }
 
 export default function Card({ href, frontmatter, secHeading = true }: Props) {
-  const { title, pubDatetime, modDatetime, description } = frontmatter;
+  const { title, pubDatetime, modDatetime, description, imgURL } = frontmatter;
 
   const headerProps = {
     style: { viewTransitionName: slugifyStr(title) },
@@ -25,10 +25,7 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
         {secHeading ? (
           <div {...headerProps}>
             <h2>{title}</h2>
-            <img
-              src="https://utfs.io/f/37ef0e49-2664-4ed6-91d7-e3a3b56e54f1-xg0okw.jpeg"
-              alt="test image"
-            />
+            <img src={imgURL} alt={title} width={200} height={200} />
           </div>
         ) : (
           <h3 {...headerProps}>{title}</h3>

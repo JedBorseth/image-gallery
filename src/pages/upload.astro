@@ -12,14 +12,67 @@ export const prerender = false;
   <Header />
 
   <main id="main-content">
-    <ImageUploader client:load />
+    <form class="grid grid-cols-2 gap-4" onsubmit="">
+      <div>
+        <label for="author">Author</label>
+        <input type="text" name="author" id="author" required />
+      </div>
+      <div>
+        <label for="title">Picture Title</label>
+        <input type="text" name="title" id="title" required />
+      </div>
+      <div>
+        <label for="desc">Description</label>
+        <input type="text" name="desc" id="desc" required />
+      </div>
+      <div>
+        <label for="tags">Tags (E.g test, example)</label>
+        <input type="text" name="tags" id="tags" required />
+      </div>
+      <input
+        type="text"
+        hidden
+        required
+        id="img-url"
+        name="img-url"
+        class="hidden"
+      />
+      <div class="col-span-2 flex flex-col">
+        <ImageUploader client:load />
+        <button
+          type="submit"
+          class="mt-5 w-1/2 self-center rounded-md bg-green-600 p-1"
+          >Upload</button
+        >
+      </div>
+    </form>
   </main>
 
   <Footer />
+  <script is:inline>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const res = await fetch("/api/createMdFile", {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        alert("Uploaded successfully");
+        form.reset();
+      } else {
+        alert("Failed to upload");
+      }
+    });
+  </script>
 </Layout>
 
 <style>
   #main-content {
     @apply mx-auto flex max-w-3xl flex-1 items-center justify-center;
+  }
+  input {
+    @apply w-full rounded-md border-2 p-1 text-black;
   }
 </style>

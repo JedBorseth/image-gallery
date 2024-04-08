@@ -13,9 +13,9 @@ const posts = await getCollection("blog");
 let tags = getUniqueTags(posts);
 ---
 
-<Layout title={`Film Pics | ${SITE.title}`}>
-  <Header activeNav="film" />
-  <ul>
+<Layout title={`Tags | ${SITE.title}`}>
+  <Header activeNav="tag" />
+  <ul class="flex justify-center">
     {tags.map(({ tag }) => <Tag {tag} size="lg" />)}
   </ul>
   <Footer />
